@@ -1,6 +1,7 @@
 // let audio = new Audio('https://upload.wikimedia.org/wikipedia/commons/b/bb/Test_ogg_mp3_48kbps.wav');
 
 // audio.preload = "auto";
+var AudioContext = window.AudioContext || window.webkitAudioContext;
 
 let ctx = new AudioContext();
 let source = ctx.createBufferSource();
