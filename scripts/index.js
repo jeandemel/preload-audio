@@ -19,7 +19,7 @@ ajax.onreadystatechange = function() {
             ctx.decodeAudioData(ajax.response, function(audiobuff) {
                 source.connect(ctx.destination);
                 source.buffer = audiobuff;
-                source.start();
+                source.start(0);
             });
         }else {
             console.error(ajax.response);
