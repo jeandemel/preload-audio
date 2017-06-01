@@ -6,9 +6,9 @@ let ctx = new AudioContext();
 let source = ctx.createBufferSource();
 
 
-file.onload = function(e) {
-    e.target.result;
-};
+// file.onload = function(e) {
+//     e.target.result;
+// };
 
 fetch(
     'https://upload.wikimedia.org/wikipedia/commons/b/bb/Test_ogg_mp3_48kbps.wav'
