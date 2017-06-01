@@ -20,4 +20,4 @@ fetch(
             source.start();
         });
     });
-});
+}).error((error) => console.error(error));
