@@ -16,11 +16,11 @@ var ajax = new XMLHttpRequest();
 ajax.onreadystatechange = function() {
     if(ajax.readyState === 4) {
         if(ajax.status >= 200 && ajax.status < 300)  {
-            ctx.decodeAudioData(ajax.response).then(function(audiobuff) {
-            source.connect(ctx.destination);
-            source.buffer = audiobuff;
-            source.start();
-        });
+            ctx.decodeAudioData(ajax.response, function(audiobuff) {
+                source.connect(ctx.destination);
+                source.buffer = audiobuff;
+                source.start();
+            });
         }else {
             console.error(ajax.response);
         }
