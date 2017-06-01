@@ -11,14 +11,34 @@ var source = ctx.createBufferSource();
 //     e.target.result;
 // };
 
-fetch(
-    'https://upload.wikimedia.org/wikipedia/commons/b/bb/Test_ogg_mp3_48kbps.wav'
-).then(function(response) {
-    response.arrayBuffer().then(function(buff) {
-        ctx.decodeAudioData(buff).then(function(audiobuff) {
+var ajax = new XMLHttpRequest();
+
+ajax.onreadystatechange = function() {
+    if(ajax.readyState === 4) {
+        if(ajax.status >= 200 && ajax.status < 300)  {
+            ctx.decodeAudioData(ajax.response).then(function(audiobuff) {
             source.connect(ctx.destination);
             source.buffer = audiobuff;
             source.start();
         });
-    });
-}).catch(function(error) { console.error(error)});
+        }else {
+            console.error(ajax.response);
+        }
+    }
+};
+ajax.open('GET', 'https://upload.wikimedia.org/wikipedia/commons/b/bb/Test_ogg_mp3_48kbps.wav', true);
+ajax.responseType = 'arraybuffer';
+
+ajax.send();
+
+// fetch(
+//     'https://upload.wikimedia.org/wikipedia/commons/b/bb/Test_ogg_mp3_48kbps.wav'
+// ).then(function(response) {
+//     response.arrayBuffer().then(function(buff) {
+//         ctx.decodeAudioData(buff).then(function(audiobuff) {
+//             source.connect(ctx.destination);
+//             source.buffer = audiobuff;
+//             source.start();
+//         });
+//     });
+// }).catch(function(error) { console.error(error)});
